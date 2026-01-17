@@ -25,7 +25,7 @@ export default function Navbar() {
                     setIsScrolled(window.scrollY > 50);
 
                     // Detect active section only if we're not navigating away
-                    const sections = navItems.map(item => item.href.replace("#", ""));
+                    const sections = navItems.map(item => item.href.split("#")[1]);
                     for (const section of sections.reverse()) {
                         const element = document.getElementById(section);
                         if (element) {
@@ -45,27 +45,32 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const isContactSection = activeSection === "contact";
+
     return (
         <>
             <motion.nav
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6 }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "glass py-4" : "py-6"
-                    }`}
+                className={`fixed top-0 left-0 right-0 z-50 py-4
+                    transition-[background-color,backdrop-filter,box-shadow]
+                    duration-500
+                    ${isScrolled ? "glass" : "bg-transparent shadow-none backdrop-blur-0"}
+                `}
             >
                 <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                     <MagneticButton>
                         <Link href="/" className="text-2xl font-bold tracking-tight group">
                             <motion.span
-                                className="text-[var(--accent)] inline-block"
+                                className={`inline-block transition-colors duration-300 ${isContactSection ? "text-black" : "text-[var(--accent)]"}`}
                                 whileHover={{ rotate: 360 }}
                                 transition={{ duration: 0.5 }}
                             >
                                 D
                             </motion.span>
                             <motion.span
-                                className="inline-block"
+                                className={`inline-block transition-colors duration-300 ${isContactSection ? "text-black" : "text-white"}`}
                                 whileHover={{ scale: 1.2 }}
                             >
                                 S
@@ -79,18 +84,18 @@ export default function Navbar() {
                             <MagneticButton key={item.name} strength={0.2}>
                                 <Link
                                     href={item.href}
-                                    className={`relative text-sm font-medium transition-colors duration-300 py-2 ${activeSection === item.href.replace("#", "")
-                                        ? "text-[var(--accent)]"
-                                        : "text-[var(--muted)] hover:text-white"
+                                    className={`relative text-sm font-medium transition-colors duration-300 py-2 ${activeSection === item.href.split("#")[1]
+                                            ? (isContactSection ? "text-black" : "text-[var(--accent)]")
+                                            : (isContactSection ? "text-black/60 hover:text-black" : "text-[var(--muted)] hover:text-white")
                                         }`}
                                 >
                                     {item.name}
                                     {/* Active indicator */}
                                     <motion.span
-                                        className="absolute -bottom-1 left-0 h-0.5 bg-[var(--accent)]"
+                                        className={`absolute -bottom-1 left-0 h-0.5 ${isContactSection ? "bg-black" : "bg-[var(--accent)]"}`}
                                         initial={{ width: 0 }}
                                         animate={{
-                                            width: activeSection === item.href.replace("#", "") ? "100%" : 0
+                                            width: activeSection === item.href.split("#")[1] ? "100%" : 0
                                         }}
                                         transition={{ duration: 0.3 }}
                                     />
@@ -100,7 +105,10 @@ export default function Navbar() {
                         <MagneticButton>
                             <Link
                                 href="/#contact"
-                                className="px-5 py-2.5 bg-[var(--accent)] text-black text-sm font-semibold rounded-full transition-all shine"
+                                className={`px-5 py-2.5 text-sm font-semibold rounded-full transition-all shine ${isContactSection
+                                        ? "bg-black text-white"
+                                        : "bg-[var(--accent)] text-black"
+                                    }`}
                             >
                                 Let&apos;s Chat
                             </Link>
@@ -114,15 +122,15 @@ export default function Navbar() {
                     >
                         <motion.span
                             animate={isMobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                            className="block w-6 h-0.5 bg-white origin-center"
+                            className={`block w-6 h-0.5 origin-center transition-colors duration-300 ${isContactSection ? "bg-black" : "bg-white"}`}
                         />
                         <motion.span
                             animate={isMobileMenuOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-                            className="block w-6 h-0.5 bg-white"
+                            className={`block w-6 h-0.5 transition-colors duration-300 ${isContactSection ? "bg-black" : "bg-white"}`}
                         />
                         <motion.span
                             animate={isMobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                            className="block w-6 h-0.5 bg-white origin-center"
+                            className={`block w-6 h-0.5 origin-center transition-colors duration-300 ${isContactSection ? "bg-black" : "bg-white"}`}
                         />
                     </button>
                 </div>

@@ -44,15 +44,26 @@ export default function About() {
                         className="relative"
                     >
                         <div className="relative w-full aspect-square max-w-md mx-auto">
-                            {/* Decorative border */}
+                            {/* Decorative border  */}
                             <div className="absolute inset-0 border-2 border-dashed border-[var(--accent)]/30 rounded-2xl opacity-50" />
 
                             {/* Placeholder avatar */}
-                            <div className="absolute inset-4 bg-gradient-to-br from-[var(--accent)]/20 to-purple-500/20 rounded-xl overflow-hidden">
+                            <motion.div
+                                animate={{
+                                    y: [0, -15, 0],
+                                    rotate: [0, 2, 0]
+                                }}
+                                transition={{
+                                    duration: 6,
+                                    repeat: Infinity,
+                                    ease: "easeInOut"
+                                }}
+                                className="absolute inset-4 bg-gradient-to-br from-[var(--accent)]/20 to-purple-500/20 rounded-xl overflow-hidden"
+                            >
                                 <div className="w-full h-full flex items-center justify-center text-8xl">
                                     👨‍💻
                                 </div>
-                            </div>
+                            </motion.div>
 
                             {/* Floating badge */}
                             <motion.div
@@ -107,7 +118,7 @@ export default function About() {
                         </div>
                     </motion.div>
                 </div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }
