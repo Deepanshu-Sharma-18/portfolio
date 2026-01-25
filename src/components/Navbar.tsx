@@ -53,7 +53,7 @@ export default function Navbar() {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6 }}
-                className={`fixed top-0 left-0 right-0 z-50 py-4
+                className={`fixed top-0 left-0 right-0 z-50 py-[2vh]
                     transition-[background-color,backdrop-filter,box-shadow]
                     duration-500
                     ${isScrolled ? "glass" : "bg-transparent shadow-none backdrop-blur-0"}
@@ -61,7 +61,7 @@ export default function Navbar() {
             >
                 <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                     <MagneticButton>
-                        <Link href="/" className="text-2xl font-bold tracking-tight group">
+                        <Link href="/" className="text-[clamp(1.25rem,2vw,1.5rem)] font-bold tracking-tight group">
                             <motion.span
                                 className={`inline-block transition-colors duration-300 ${isContactSection ? "text-black" : "text-[var(--accent)]"}`}
                                 whileHover={{ rotate: 360 }}
@@ -84,9 +84,9 @@ export default function Navbar() {
                             <MagneticButton key={item.name} strength={0.2}>
                                 <Link
                                     href={item.href}
-                                    className={`relative text-sm font-medium transition-colors duration-300 py-2 ${activeSection === item.href.split("#")[1]
-                                            ? (isContactSection ? "text-black" : "text-[var(--accent)]")
-                                            : (isContactSection ? "text-black/60 hover:text-black" : "text-[var(--muted)] hover:text-white")
+                                    className={`relative text-[clamp(0.875rem,0.9vw,1rem)] font-medium transition-colors duration-300 py-2 ${activeSection === item.href.split("#")[1]
+                                        ? (isContactSection ? "text-black" : "text-[var(--accent)]")
+                                        : (isContactSection ? "text-black/60 hover:text-black" : "text-[var(--muted)] hover:text-white")
                                         }`}
                                 >
                                     {item.name}
@@ -106,8 +106,8 @@ export default function Navbar() {
                             <Link
                                 href="/#contact"
                                 className={`px-5 py-2.5 text-sm font-semibold rounded-full transition-all shine ${isContactSection
-                                        ? "bg-black text-white"
-                                        : "bg-[var(--accent)] text-black"
+                                    ? "bg-black text-white"
+                                    : "bg-[var(--accent)] text-black"
                                     }`}
                             >
                                 Let&apos;s Chat

@@ -5,11 +5,14 @@ import { useRef } from "react";
 
 const skills = [
     { name: "Flutter", icon: "🦋" },
-    { name: "Dart", icon: "🎯" },
     { name: "Android", icon: "🤖" },
     { name: "Kotlin", icon: "🔷" },
-    { name: "Firebase", icon: "🔥" },
-    { name: "REST APIs", icon: "🌐" },
+    { name: "Java", icon: "☕" },
+    { name: "GoLang", icon: "🐹" },
+    { name: "Solidity", icon: "⛓️" },
+    { name: "Spring Boot", icon: "🍃" },
+    { name: "AWS", icon: "☁️" },
+    { name: "Docker", icon: "🐳" },
 ];
 
 export default function About() {
@@ -29,7 +32,7 @@ export default function About() {
                     <span className="text-[var(--accent)] text-sm font-medium tracking-widest uppercase">
                         About Me
                     </span>
-                    <h2 className="text-4xl md:text-6xl font-bold mt-4 leading-tight">
+                    <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold mt-4 leading-tight">
                         Building the future,<br />
                         <span className="text-[var(--accent)]">one app at a time.</span>
                     </h2>
@@ -43,7 +46,7 @@ export default function About() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="relative"
                     >
-                        <div className="relative w-full aspect-square max-w-md mx-auto">
+                        <div className="relative w-full aspect-square max-w-[min(450px,90vw)] mx-auto">
                             {/* Decorative border  */}
                             <div className="absolute inset-0 border-2 border-dashed border-[var(--accent)]/30 rounded-2xl opacity-50" />
 
@@ -60,7 +63,7 @@ export default function About() {
                                 }}
                                 className="absolute inset-4 bg-gradient-to-br from-[var(--accent)]/20 to-purple-500/20 rounded-xl overflow-hidden"
                             >
-                                <div className="w-full h-full flex items-center justify-center text-8xl">
+                                <div className="w-full h-full flex items-center justify-center text-[clamp(4rem,10vw,8rem)]">
                                     👨‍💻
                                 </div>
                             </motion.div>
@@ -71,7 +74,7 @@ export default function About() {
                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                                 className="absolute -right-4 -bottom-4 glass px-6 py-3 rounded-xl"
                             >
-                                <span className="text-[var(--accent)] font-bold text-lg">2+ Years</span>
+                                <span className="text-[var(--accent)] font-bold text-[clamp(1rem,1.2vw,1.25rem)]">2+ Years</span>
                                 <p className="text-sm text-[var(--muted)]">Experience</p>
                             </motion.div>
                         </div>
@@ -84,13 +87,13 @@ export default function About() {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         className="space-y-6"
                     >
-                        <p className="text-lg text-[var(--muted)] leading-relaxed">
+                        <p className="text-[clamp(1rem,1.1vw,1.25rem)] text-[var(--muted)] leading-relaxed">
                             I&apos;m a passionate mobile developer with expertise in building
                             cross-platform applications using <span className="text-white font-medium">Flutter</span> and
                             native <span className="text-white font-medium">Android</span> development.
                         </p>
 
-                        <p className="text-lg text-[var(--muted)] leading-relaxed">
+                        <p className="text-[clamp(1rem,1.1vw,1.25rem)] text-[var(--muted)] leading-relaxed">
                             With hands-on experience from a <span className="text-[var(--accent)] font-medium">6-month
                                 Flutter internship</span>, I&apos;ve developed a deep understanding of mobile
                             app architecture, state management, and creating pixel-perfect UIs that

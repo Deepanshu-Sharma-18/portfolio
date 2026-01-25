@@ -25,7 +25,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={ref} className="min-h-screen flex flex-col justify-start !pt-20 lg:!pt-28 relative overflow-hidden">
+        <section ref={ref} className="min-h-screen flex flex-col justify-start pt-[12vh] relative overflow-hidden">
             {/* Animated gradient background */}
             <div className="absolute inset-0 bg-[#0a0a0a]" />
             <motion.div
@@ -48,7 +48,7 @@ export default function Hero() {
                     rotate: [0, 180, 360],
                 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute top-1/4 right-1/4 w-72 h-72 bg-[var(--accent)] opacity-10 rounded-full blur-3xl"
+                className="absolute top-[15%] right-[15%] w-[35vmin] h-[35vmin] bg-[var(--accent)] opacity-10 rounded-full blur-3xl"
             />
             <motion.div
                 animate={{
@@ -57,7 +57,7 @@ export default function Hero() {
                     rotate: [0, -5, 0],
                 }}
                 transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-purple-500 opacity-10 rounded-full blur-3xl"
+                className="absolute bottom-[15%] left-[15%] w-[45vmin] h-[45vmin] bg-purple-500 opacity-10 rounded-full blur-3xl"
             />
 
             {/* Grid pattern overlay */}
@@ -79,18 +79,18 @@ export default function Hero() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="text-[var(--accent)] text-lg md:text-xl font-medium tracking-wide inline-block hover-underline"
+                            className="text-[var(--accent)] text-[clamp(1.125rem,2vw,1.5rem)] font-medium tracking-wide inline-block hover-underline"
                         >
                             Hi, I&apos;m
                         </motion.p>
 
                         {/* Main headline with letter animation */}
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[1.1] tracking-tight">
+                        <h1 className="text-[clamp(3rem,8vw,6rem)] font-black leading-[1.1] tracking-tight">
                             <motion.span
                                 initial={{ opacity: 0, y: 40 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3, duration: 0.6 }}
-                                className="block overflow-hidden"
+                                className="block overflow-hidden px-2 pb-6"
                             >
                                 <motion.span
                                     className="inline-block"
@@ -106,7 +106,7 @@ export default function Hero() {
                                 initial={{ opacity: 0, y: 40 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 0.6 }}
-                                className="block text-[var(--accent)] overflow-hidden"
+                                className="block text-[var(--accent)] overflow-hidden px-2 pb-6"
                             >
                                 <motion.span
                                     className="inline-block"
@@ -128,7 +128,7 @@ export default function Hero() {
                                 animate={{ y: 0, opacity: 1, rotateX: 0 }}
                                 exit={{ y: -50, opacity: 0, rotateX: 90 }}
                                 transition={{ duration: 0.5, ease: "easeOut" }}
-                                className="text-2xl md:text-4xl font-light text-[var(--muted)] absolute"
+                                className="text-[clamp(1.5rem,4vw,3rem)] font-light text-[var(--muted)] absolute"
                             >
                                 {roles[currentRole]}
                             </motion.p>
@@ -139,7 +139,7 @@ export default function Hero() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.6 }}
-                            className="text-lg md:text-xl text-[var(--muted)] max-w-2xl leading-relaxed"
+                            className="text-[clamp(1.125rem,1.5vw,1.5rem)] text-[var(--muted)] max-w-[min(90vw,42rem)] leading-relaxed"
                         >
                             I craft{" "}
                             <span className="text-white font-medium relative">
@@ -194,7 +194,7 @@ export default function Hero() {
 
                     {/* Right side - Glassmorphic Code Card */}
                     <div className="hidden lg:block relative z-10 perspective-1000">
-                        <TiltCard className="w-full max-w-md mx-auto" intensity={10}>
+                        <TiltCard className="w-full max-w-[min(90vw,45rem)] lg:max-w-[55vmin] mx-auto" intensity={10}>
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9, x: 50 }}
                                 animate={{ opacity: 1, scale: 1, x: 0 }}

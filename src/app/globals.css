@@ -233,20 +233,20 @@ body {
   overflow-y: auto;
 }
 
-/* Section spacing */
+/* Section spacing with relative units */
 section {
-  padding: 6rem 1.5rem;
+  padding: 10vh 5vw;
 }
 
 @media (min-width: 768px) {
   section {
-    padding: 8rem 4rem;
+    padding: 12vh 6vw;
   }
 }
 
 @media (min-width: 1024px) {
   section {
-    padding: 10rem 6rem;
+    padding: 15vh 8vw;
   }
 }
 

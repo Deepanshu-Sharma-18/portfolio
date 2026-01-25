@@ -28,7 +28,7 @@ export default function Projects() {
                     <span className="text-[var(--accent)] text-sm font-medium tracking-widest uppercase">
                         Portfolio
                     </span>
-                    <h2 className="text-4xl md:text-6xl font-bold mt-4">
+                    <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold mt-4">
                         Featured <span className="text-[var(--accent)]">Projects</span>
                     </h2>
                     <p className="text-[var(--muted)] mt-4 max-w-xl mx-auto">
@@ -89,7 +89,7 @@ export default function Projects() {
                                                     : { scale: 1, rotateZ: 0, translateZ: 0 }
                                                 }
                                                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                                className="text-6xl mb-6 inline-block"
+                                                className="text-[clamp(3rem,5vw,3.75rem)] mb-6 inline-block"
                                                 style={{ transformStyle: "preserve-3d" }}
                                             >
                                                 {project.icon}
@@ -109,7 +109,7 @@ export default function Projects() {
                                             </motion.div>
 
                                             {/* Title */}
-                                            <h3 className="text-2xl md:text-3xl font-bold mb-2 group-hover:text-[var(--accent)] transition-colors">
+                                            <h3 className="text-[clamp(1.5rem,2vw,2rem)] font-bold mb-2 group-hover:text-[var(--accent)] transition-colors">
                                                 {project.name}
                                             </h3>
 

@@ -3,7 +3,7 @@ import { getProjectById, projects } from "@/data/projects";
 import ProjectDetails from "@/components/ProjectDetails";
 import { Metadata } from "next";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 interface ProjectPageProps {
     params: Promise<{ id: string }>;

@@ -7,17 +7,39 @@ const experiences = [
     {
         id: 1,
         role: "Flutter Developer Intern",
-        company: "Tech Solutions Inc.",
-        duration: "Jan 2024 - Jun 2024",
-        location: "Remote",
+        company: "HDS Infotech",
+        duration: "Jan 2025 - May 2025",
+        location: "Pune, India",
         description: [
-            "Developed and maintained 3+ Flutter applications with over 10,000 combined downloads",
-            "Implemented complex UI designs achieving pixel-perfect accuracy across iOS and Android",
-            "Integrated RESTful APIs and Firebase services for real-time data synchronization",
-            "Collaborated with cross-functional teams using Agile methodologies",
-            "Optimized app performance reducing load times by 40%",
+            "Developed a cross-platform e-commerce mobile application using Flutter, enhancing user experience with product search and checkout features for 50+ users",
+            "Streamlined checkout process with body measurement inputs; integrated REST APIs for backend integration",
+            "Contributed to 7-day Agile sprints using Jira, managed state with Provider, followed MVC architecture, and used Git for version control"
         ],
-        tech: ["Flutter", "Dart", "Firebase", "REST API", "Git"],
+        tech: ["Flutter", "Dart", "REST APIs", "Git", "Provider", "Jira"],
+    },
+    {
+        id: 2,
+        role: "Full Stack Intern",
+        company: "Alkraj Developers Pvt Ltd",
+        duration: "Sept 2023 - Dec 2023",
+        location: "Pune, India",
+        description: [
+            "Built modules for CoinCrux, a crypto news app, including feed and categories, improving user engagement for 100+ users",
+            "Developed a Firebase-based admin panel for real-time news publishing with CRUD support, reducing content update time by 50%"
+        ],
+        tech: ["Flutter", "Firebase", "Git", "Asana"],
+    },
+    {
+        id: 3,
+        role: "Android Facilitator (Volunteer)",
+        company: "Google Developer Student Club",
+        duration: "2023 - 2025",
+        location: "JSPM RSCOE",
+        description: [
+            "Led a team of 5 to conduct 10+ workshops on Jetpack Compose, Firebase, and MVVM, mentoring 50+ students",
+            "Organized hackathons for 200+ participants, promoting collaboration and skill development"
+        ],
+        tech: ["Android", "Jetpack Compose", "Mentorship", "Community Building"],
     },
 ];
 
@@ -38,7 +60,7 @@ export default function Experience() {
                     <span className="text-[var(--accent)] text-sm font-medium tracking-widest uppercase">
                         Career
                     </span>
-                    <h2 className="text-4xl md:text-6xl font-bold mt-4">
+                    <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold mt-4">
                         Work <span className="text-[var(--accent)]">Experience</span>
                     </h2>
                 </motion.div>
@@ -74,8 +96,8 @@ export default function Experience() {
                                     {/* Header */}
                                     <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
                                         <div>
-                                            <h3 className="text-2xl font-bold text-[var(--accent)]">{exp.role}</h3>
-                                            <p className="text-xl text-white mt-1">{exp.company}</p>
+                                            <h3 className="text-[clamp(1.25rem,1.5vw,1.5rem)] font-bold text-[var(--accent)]">{exp.role}</h3>
+                                            <p className="text-[clamp(1rem,1.2vw,1.25rem)] text-white mt-1">{exp.company}</p>
                                         </div>
                                         <div className="text-right text-[var(--muted)]">
                                             <p className="font-medium">{exp.duration}</p>

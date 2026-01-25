@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
     return (
-        <footer className="bg-[var(--background)] py-8 px-6">
+        <footer className="bg-[var(--background)] py-[4vh] px-[5vw]">
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -25,7 +25,7 @@ export default function Footer() {
                     {/* Social icons */}
                     <div className="flex items-center gap-4">
                         <a
-                            href="https://github.com/your-username"
+                            href="https://github.com/Deepanshu-Sharma-18"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-[var(--muted)] hover:text-white transition-colors"
@@ -35,7 +35,7 @@ export default function Footer() {
                             </svg>
                         </a>
                         <a
-                            href="https://linkedin.com/in/your-username"
+                            href="https://www.linkedin.com/in/deepanshusharma18/"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-[var(--muted)] hover:text-white transition-colors"
