@@ -1,28 +1,41 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring, LayoutGroup } from "framer-motion";
 import Link from "next/link";
 
 const navItems = [
-    { name: "About", href: "/#about", icon: "◆" },
-    { name: "Projects", href: "/#projects", icon: "◈" },
-    { name: "Experience", href: "/#experience", icon: "◇" },
-    { name: "Contact", href: "/#contact", icon: "◎" },
+    { name: "About", href: "/#about" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Experience", href: "/#experience" },
+    { name: "Contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
     const [activeSection, setActiveSection] = useState("");
     const [isExpanded, setIsExpanded] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
+    const [isInHero, setIsInHero] = useState(true);
+    const [showOrbAttention, setShowOrbAttention] = useState(false);
     const navRef = useRef<HTMLElement>(null);
 
     useEffect(() => {
         let ticking = false;
+        let wasInHero = true;
+
         const handleScroll = () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    setIsScrolled(window.scrollY > 100);
+                    const scrollY = window.scrollY;
+                    const heroThreshold = window.innerHeight * 0.6;
+                    const currentlyInHero = scrollY < heroThreshold;
+
+                    // Trigger attention animation when transitioning from hero to scrolled
+                    if (wasInHero && !currentlyInHero) {
+                        setShowOrbAttention(true);
+                        setTimeout(() => setShowOrbAttention(false), 2000);
+                    }
+                    wasInHero = currentlyInHero;
+                    setIsInHero(currentlyInHero);
 
                     const sections = navItems.map(item => item.href.split("#")[1]);
                     for (const section of sections.reverse()) {
@@ -46,29 +59,13 @@ export default function Navbar() {
     }, []);
 
     return (
-        <>
-            {/* Liquid Orb Navbar - Fixed bottom right */}
-            <motion.nav
-                ref={navRef}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 20 }}
-                className="fixed bottom-8 right-8 z-50"
-            >
-                <LiquidOrb
-                    isExpanded={isExpanded}
-                    setIsExpanded={setIsExpanded}
-                    activeSection={activeSection}
-                />
-            </motion.nav>
-
-            {/* Top Brand Bar - Minimal */}
+        <LayoutGroup>
+            {/* Top Brand Bar with Logo */}
             <motion.header
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${isScrolled ? "py-3" : "py-6"
-                    }`}
+                className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${!isInHero ? "py-3" : "py-6"}`}
             >
                 <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
                     {/* Logo */}
@@ -81,7 +78,7 @@ export default function Navbar() {
                             <motion.div
                                 className="text-2xl font-black flex items-center"
                                 animate={{
-                                    textShadow: isScrolled
+                                    textShadow: !isInHero
                                         ? "0 0 30px rgba(0, 255, 255, 0.5)"
                                         : "none"
                                 }}
@@ -98,7 +95,6 @@ export default function Navbar() {
                                     <span className="text-[var(--accent-secondary)]">S</span>
                                 </span>
                             </motion.div>
-                            {/* Hover glow */}
                             <motion.div
                                 className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
                                 style={{
@@ -109,19 +105,109 @@ export default function Navbar() {
                         </motion.div>
                     </Link>
 
+                    {/* Header Navigation - Sleek minimal design in hero section */}
+                    <AnimatePresence mode="wait">
+                        {isInHero && (
+                            <motion.nav
+                                key="header-nav"
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                transition={{
+                                    type: "spring",
+                                    damping: 25,
+                                    stiffness: 300
+                                }}
+                                className="hidden md:flex items-center"
+                            >
+                                {/* Sleek pill-shaped nav container */}
+                                <motion.div
+                                    className="relative flex items-center gap-1 px-2 py-1.5 rounded-full"
+                                    style={{
+                                        background: "rgba(0, 0, 0, 0.4)",
+                                        backdropFilter: "blur(20px)",
+                                        border: "1px solid rgba(255, 255, 255, 0.08)",
+                                    }}
+                                >
+                                    {/* Animated gradient border */}
+                                    <motion.div
+                                        className="absolute inset-0 rounded-full opacity-50"
+                                        style={{
+                                            background: "linear-gradient(90deg, transparent, rgba(0,255,255,0.1), transparent)",
+                                            backgroundSize: "200% 100%",
+                                        }}
+                                        animate={{
+                                            backgroundPosition: ["200% 0%", "-200% 0%"],
+                                        }}
+                                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                                    />
+
+                                    {navItems.map((item, index) => {
+                                        const sectionId = item.href.split("#")[1];
+                                        return (
+                                            <Link
+                                                key={item.name}
+                                                href={item.href}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+                                                }}
+                                            >
+                                                <motion.div
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    transition={{ delay: 0.1 + index * 0.05 }}
+                                                    whileHover={{ scale: 1.02 }}
+                                                    whileTap={{ scale: 0.98 }}
+                                                    className="relative px-4 py-2 rounded-full text-sm font-medium cursor-pointer"
+                                                >
+                                                    {/* Active indicator background */}
+                                                    {activeSection === sectionId && (
+                                                        <motion.div
+                                                            layoutId="headerActiveTab"
+                                                            className="absolute inset-0 rounded-full"
+                                                            style={{
+                                                                background: "linear-gradient(135deg, var(--accent), var(--accent-secondary))",
+                                                            }}
+                                                            transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                                                        />
+                                                    )}
+                                                    {/* Text */}
+                                                    <span
+                                                        className={`relative z-10 transition-colors duration-200 ${activeSection === sectionId
+                                                            ? "text-black font-semibold"
+                                                            : "text-white/60 hover:text-white"
+                                                            }`}
+                                                    >
+                                                        {item.name}
+                                                    </span>
+                                                </motion.div>
+                                            </Link>
+                                        );
+                                    })}
+                                </motion.div>
+                            </motion.nav>
+                        )}
+                    </AnimatePresence>
+
                     {/* CTA Button */}
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.5 }}
                     >
-                        <Link href="/#contact">
+                        <Link
+                            href="/#contact"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                        >
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="relative px-6 py-2.5 rounded-full overflow-hidden group"
                             >
-                                {/* Liquid gradient background */}
                                 <motion.div
                                     className="absolute inset-0"
                                     style={{
@@ -132,7 +218,6 @@ export default function Navbar() {
                                     }}
                                     transition={{ duration: 5, repeat: Infinity }}
                                 />
-                                {/* Morphing blob overlay */}
                                 <motion.div
                                     className="absolute inset-0 opacity-30"
                                     style={{
@@ -152,7 +237,50 @@ export default function Navbar() {
                     </motion.div>
                 </div>
             </motion.header>
-        </>
+
+            {/* Floating Orb Navbar - Visible after scrolling past hero */}
+            <AnimatePresence>
+                {!isInHero && (
+                    <motion.nav
+                        ref={navRef}
+                        initial={{ scale: 0, opacity: 0, y: 50 }}
+                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                        exit={{ scale: 0, opacity: 0, y: 50 }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 25
+                        }}
+                        className="fixed bottom-8 right-8 z-50"
+                    >
+                        {/* Attention-grabbing pulse animation on first appearance */}
+                        {showOrbAttention && (
+                            <>
+                                <motion.div
+                                    className="absolute inset-0 rounded-full bg-[var(--accent)]"
+                                    initial={{ scale: 1, opacity: 0.6 }}
+                                    animate={{ scale: 3, opacity: 0 }}
+                                    transition={{ duration: 1, ease: "easeOut" }}
+                                />
+                                <motion.div
+                                    className="absolute inset-0 rounded-full bg-[var(--accent)]"
+                                    initial={{ scale: 1, opacity: 0.4 }}
+                                    animate={{ scale: 2.5, opacity: 0 }}
+                                    transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+                                />
+                            </>
+                        )}
+
+                        <LiquidOrb
+                            isExpanded={isExpanded}
+                            setIsExpanded={setIsExpanded}
+                            activeSection={activeSection}
+                            showAttention={showOrbAttention}
+                        />
+                    </motion.nav>
+                )}
+            </AnimatePresence>
+        </LayoutGroup>
     );
 }
 
@@ -160,14 +288,14 @@ interface LiquidOrbProps {
     isExpanded: boolean;
     setIsExpanded: (expanded: boolean) => void;
     activeSection: string;
+    showAttention?: boolean;
 }
 
-function LiquidOrb({ isExpanded, setIsExpanded, activeSection }: LiquidOrbProps) {
+function LiquidOrb({ isExpanded, setIsExpanded, activeSection, showAttention }: LiquidOrbProps) {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
     const orbRef = useRef<HTMLDivElement>(null);
 
-    // Spring physics for smooth following
     const springConfig = { damping: 25, stiffness: 300 };
     const x = useSpring(mouseX, springConfig);
     const y = useSpring(mouseY, springConfig);
@@ -193,24 +321,26 @@ function LiquidOrb({ isExpanded, setIsExpanded, activeSection }: LiquidOrbProps)
             onMouseLeave={handleMouseLeave}
             className="relative"
         >
-            {/* Outer glow ring */}
-            <motion.div
-                className="absolute inset-0 rounded-full"
-                animate={{
-                    boxShadow: isExpanded
-                        ? [
-                            "0 0 30px rgba(0,255,255,0.4), 0 0 60px rgba(139,92,246,0.3)",
-                            "0 0 50px rgba(0,255,255,0.6), 0 0 80px rgba(139,92,246,0.4)",
-                            "0 0 30px rgba(0,255,255,0.4), 0 0 60px rgba(139,92,246,0.3)",
-                        ]
-                        : [
-                            "0 0 20px rgba(0,255,255,0.3)",
-                            "0 0 40px rgba(0,255,255,0.5)",
-                            "0 0 20px rgba(0,255,255,0.3)",
-                        ],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-            />
+            {/* Outer glow ring - only when collapsed */}
+            {!isExpanded && (
+                <motion.div
+                    className="absolute inset-0 rounded-full"
+                    animate={{
+                        boxShadow: showAttention
+                            ? [
+                                "0 0 30px rgba(0,255,255,0.6), 0 0 60px rgba(0,255,255,0.4)",
+                                "0 0 50px rgba(0,255,255,0.8), 0 0 80px rgba(0,255,255,0.5)",
+                                "0 0 30px rgba(0,255,255,0.6), 0 0 60px rgba(0,255,255,0.4)",
+                            ]
+                            : [
+                                "0 0 20px rgba(0,255,255,0.3)",
+                                "0 0 40px rgba(0,255,255,0.5)",
+                                "0 0 20px rgba(0,255,255,0.3)",
+                            ],
+                    }}
+                    transition={{ duration: showAttention ? 0.5 : 2, repeat: Infinity }}
+                />
+            )}
 
             {/* Main orb container */}
             <motion.div
@@ -221,7 +351,8 @@ function LiquidOrb({ isExpanded, setIsExpanded, activeSection }: LiquidOrbProps)
                     borderRadius: isExpanded ? 28 : 32,
                 }}
                 transition={{ type: "spring", damping: 20, stiffness: 200 }}
-                className="relative overflow-hidden cursor-pointer"
+                className={`relative overflow-hidden cursor-pointer ${isExpanded ? "backdrop-blur-xl" : ""
+                    }`}
                 onClick={() => setIsExpanded(!isExpanded)}
             >
                 {/* Liquid gradient background */}
@@ -229,7 +360,7 @@ function LiquidOrb({ isExpanded, setIsExpanded, activeSection }: LiquidOrbProps)
                     className="absolute inset-0"
                     animate={{
                         background: isExpanded
-                            ? "linear-gradient(135deg, rgba(0,0,0,0.9), rgba(20,20,30,0.95))"
+                            ? "linear-gradient(135deg, rgba(10,10,15,0.85), rgba(20,20,35,0.9))"
                             : "linear-gradient(135deg, var(--accent), var(--accent-secondary))",
                     }}
                 />
@@ -308,7 +439,6 @@ function CollapsedOrb() {
             exit={{ scale: 0, rotate: 180 }}
             className="flex flex-col items-center justify-center gap-1.5"
         >
-            {/* Hamburger with liquid effect */}
             <motion.span
                 className="w-5 h-0.5 bg-black rounded-full"
                 animate={{ width: [20, 16, 20] }}
@@ -366,7 +496,7 @@ function ExpandedMenu({ activeSection, onClose }: ExpandedMenuProps) {
                 Navigate
             </motion.p>
 
-            {/* Navigation items in circular/radial layout */}
+            {/* Navigation items - no icons, clean design */}
             <div className="flex flex-col gap-2">
                 {navItems.map((item, index) => (
                     <motion.div
@@ -378,14 +508,17 @@ function ExpandedMenu({ activeSection, onClose }: ExpandedMenuProps) {
                         <Link
                             href={item.href}
                             onClick={(e) => {
+                                e.preventDefault();
                                 e.stopPropagation();
+                                const sectionId = item.href.split("#")[1];
+                                document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
                                 onClose();
                             }}
                         >
                             <motion.div
                                 whileHover={{ x: 8, backgroundColor: "rgba(0,255,255,0.1)" }}
                                 className={`
-                                    flex items-center gap-3 px-3 py-2.5 rounded-xl
+                                    flex items-center gap-3 px-4 py-3 rounded-xl
                                     transition-colors group
                                     ${activeSection === item.href.split("#")[1]
                                         ? "bg-[var(--accent)]/10"
@@ -393,19 +526,16 @@ function ExpandedMenu({ activeSection, onClose }: ExpandedMenuProps) {
                                     }
                                 `}
                             >
-                                <motion.span
-                                    className={`text-lg ${activeSection === item.href.split("#")[1]
-                                            ? "text-[var(--accent)]"
-                                            : "text-white/40 group-hover:text-[var(--accent)]"
+                                {/* Active indicator bar */}
+                                <motion.div
+                                    className={`w-0.5 h-4 rounded-full transition-colors ${activeSection === item.href.split("#")[1]
+                                        ? "bg-[var(--accent)]"
+                                        : "bg-white/20 group-hover:bg-[var(--accent)]"
                                         }`}
-                                    whileHover={{ rotate: 360, scale: 1.2 }}
-                                    transition={{ duration: 0.4 }}
-                                >
-                                    {item.icon}
-                                </motion.span>
+                                />
                                 <span className={`font-medium ${activeSection === item.href.split("#")[1]
-                                        ? "text-[var(--accent)]"
-                                        : "text-white/70 group-hover:text-white"
+                                    ? "text-[var(--accent)]"
+                                    : "text-white/70 group-hover:text-white"
                                     }`}>
                                     {item.name}
                                 </span>

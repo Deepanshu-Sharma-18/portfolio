@@ -19,9 +19,9 @@ export default function Hero() {
         offset: ["start start", "end start"]
     });
 
-    const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
-    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
+    const y = useTransform(scrollYProgress, [0.3, 1], [0, 150]);
+    const opacity = useTransform(scrollYProgress, [0.3, 0.9], [1, 0]);
+    const scale = useTransform(scrollYProgress, [0.3, 0.9], [1, 0.95]);
 
     // Mouse tracking for 3D effect
     const mouseX = useMotionValue(0);
@@ -114,16 +114,16 @@ export default function Hero() {
             >
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
                         className="space-y-8"
                     >
                         {/* Intro line with glow */}
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.2 }}
+                            transition={{ delay: 0.1, duration: 0.5, ease: "easeOut" }}
                             className="flex items-center gap-3"
                         >
                             <motion.div
@@ -145,9 +145,9 @@ export default function Hero() {
                             {mounted ? (
                                 <>
                                     <motion.span
-                                        initial={{ opacity: 0, y: 40 }}
+                                        initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.3, duration: 0.6 }}
+                                        transition={{ delay: 0.15, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
                                         className="block overflow-hidden"
                                     >
                                         <GradientText className="block text-[clamp(3rem,8vw,6rem)] font-black">
@@ -155,9 +155,9 @@ export default function Hero() {
                                         </GradientText>
                                     </motion.span>
                                     <motion.span
-                                        initial={{ opacity: 0, y: 40 }}
+                                        initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.5, duration: 0.6 }}
+                                        transition={{ delay: 0.25, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
                                         className="block overflow-hidden"
                                     >
                                         <span
@@ -190,9 +190,9 @@ export default function Hero() {
 
                         {/* Description with highlight */}
                         <motion.p
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.6 }}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.35, duration: 0.5, ease: "easeOut" }}
                             className="text-[clamp(1rem,1.3vw,1.25rem)] text-[var(--muted)] 
                                        max-w-[min(90vw,42rem)] leading-relaxed"
                         >
@@ -213,9 +213,9 @@ export default function Hero() {
 
                         {/* Stats row */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 15 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.8 }}
+                            transition={{ delay: 0.45, duration: 0.5, ease: "easeOut" }}
                             className="flex flex-wrap gap-8 pt-2"
                         >
                             {[
@@ -234,9 +234,9 @@ export default function Hero() {
 
                         {/* CTA Buttons */}
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 15 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1 }}
+                            transition={{ delay: 0.55, duration: 0.5, ease: "easeOut" }}
                             className="flex flex-wrap gap-4 pt-4"
                         >
                             <MagneticButton>
@@ -277,6 +277,45 @@ export default function Hero() {
                                     Get In Touch
                                 </motion.a>
                             </MagneticButton>
+
+                            {/* Resume Button - Strategic Placement */}
+                            <MagneticButton>
+                                <motion.a
+                                    href="/resume.pdf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="group relative px-6 py-4 rounded-full font-medium flex items-center gap-2
+                                               border border-[var(--accent)]/50 hover:border-[var(--accent)] 
+                                               hover:bg-[var(--accent)]/10 transition-all duration-300"
+                                >
+                                    {/* Subtle animated glow */}
+                                    <motion.div
+                                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100"
+                                        style={{
+                                            background: "radial-gradient(circle, rgba(0,255,255,0.15), transparent 70%)",
+                                        }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                    <svg
+                                        className="w-4 h-4 text-[var(--accent)] relative z-10"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                        />
+                                    </svg>
+                                    <span className="relative z-10 text-[var(--accent)] group-hover:text-white transition-colors">
+                                        Resume
+                                    </span>
+                                </motion.a>
+                            </MagneticButton>
                         </motion.div>
                     </motion.div>
 
@@ -284,9 +323,9 @@ export default function Hero() {
                     <div className="hidden lg:block relative z-10">
                         <TiltCard className="w-full max-w-[min(90vw,45rem)] lg:max-w-[55vmin] mx-auto" intensity={10}>
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.9, x: 50 }}
+                                initial={{ opacity: 0, scale: 0.95, x: 30 }}
                                 animate={{ opacity: 1, scale: 1, x: 0 }}
-                                transition={{ delay: 0.5, duration: 0.8 }}
+                                transition={{ delay: 0.3, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                                 className="relative glass-glow rounded-xl overflow-hidden"
                             >
                                 {/* Animated border */}
@@ -321,29 +360,33 @@ export default function Hero() {
                                                 whileHover={{ scale: 1.2 }}
                                             />
                                         </div>
-                                        <div className="ml-4 text-xs text-white/30 font-mono">flow_state.ts</div>
+                                        <div className="ml-4 text-xs text-white/30 font-mono">dev_life.sh</div>
                                     </div>
 
                                     {/* Code content with line-by-line animation */}
-                                    <div className="p-6 font-mono text-xs md:text-sm leading-relaxed text-white/80 overflow-x-auto">
+                                    <div className="p-6 font-mono text-xs md:text-sm leading-relaxed text-white/80 overflow-x-auto min-h-[300px]">
                                         {[
-                                            { indent: 0, content: <><span className="text-purple-400">function</span> <span className="text-[var(--accent)]">flowState</span><span className="text-yellow-300">()</span> <span className="text-white/60">{"{"}</span></> },
-                                            { indent: 1, content: <><span className="text-blue-400">enterFocus</span><span className="text-purple-300">()</span><span className="text-white/60">;</span></> },
-                                            { indent: 1, content: <><span className="text-blue-400">blockNoise</span><span className="text-purple-300">()</span><span className="text-white/60">;</span></> },
-                                            { indent: 1, content: <><span className="text-blue-400">buildSomething</span><span className="text-purple-300">(</span><span className="text-green-400">&quot;meaningful&quot;</span><span className="text-purple-300">)</span><span className="text-white/60">;</span></> },
-                                            { indent: 1, content: <><span className="text-blue-400">breakThings</span><span className="text-purple-300">()</span><span className="text-white/60">;</span></> },
-                                            { indent: 1, content: <><span className="text-blue-400">traceTheBug</span><span className="text-purple-300">()</span><span className="text-white/60">;</span></> },
-                                            { indent: 1, content: <><span className="text-blue-400">refineDetails</span><span className="text-purple-300">()</span><span className="text-white/60">;</span></> },
-                                            { indent: 1, content: <><span className="text-blue-400">shipQuietly</span><span className="text-purple-300">(</span><span className="text-green-400">&quot;to production&quot;</span><span className="text-purple-300">)</span><span className="text-white/60">;</span></> },
-                                            { indent: 1, content: <><span className="text-blue-400">repeatTomorrow</span><span className="text-purple-300">()</span><span className="text-white/60">;</span></> },
-                                            { indent: 0, content: <span className="text-white/60">{"}"}</span> },
+                                            { indent: 0, content: <><span className="text-white/30">$</span> <span className="text-[var(--accent)]">while</span> <span className="text-yellow-300">(</span><span className="text-blue-400">alive</span><span className="text-yellow-300">)</span> <span className="text-white/60">{"{"}</span></> },
+                                            { indent: 1, content: <><span className="text-blue-400">eat</span><span className="text-purple-300">()</span><span className="text-white/60">;</span> <span className="text-white/30">// ☕ coffee++</span></> },
+                                            { indent: 1, content: <><span className="text-blue-400">sleep</span><span className="text-purple-300">()</span><span className="text-white/60">;</span> <span className="text-white/30">// optional</span></> },
+                                            { indent: 1, content: <><span className="text-blue-400">build</span><span className="text-purple-300">()</span><span className="text-white/60">;</span> <span className="text-white/30">// make it amazing</span></> },
+                                            { indent: 1, content: <><span className="text-blue-400">test</span><span className="text-purple-300">()</span><span className="text-white/60">;</span> <span className="text-white/30">// fixed: was perfect</span></> },
+                                            { indent: 1, content: <><span className="text-blue-400">repeat</span><span className="text-purple-300">()</span><span className="text-white/60">;</span></> },
+                                            { indent: 0, content: <><span className="text-white/60">{"}"}</span></> },
+                                            { indent: 0, content: <span className="text-white/10">----------------------</span> },
+                                            { indent: 0, content: <><span className="text-white/30">$</span> <span className="text-blue-400">./deploy.sh</span></> },
+                                            { indent: 0, content: <><span className="text-white/30">[OK]</span> <span className="text-green-400">Production ready</span></> },
+                                            { indent: 0, content: <><span className="text-white/30">[OK]</span> <span className="text-green-400">Magic happens now ✨</span></> },
                                         ].map((line, index) => (
                                             <motion.div
                                                 key={index}
-                                                initial={{ opacity: 0, x: -20 }}
+                                                initial={{ opacity: 0, x: -10 }}
                                                 animate={{ opacity: 1, x: 0 }}
-                                                transition={{ delay: 0.8 + index * 0.1 }}
-                                                className="mb-1"
+                                                transition={{
+                                                    delay: 0.8 + index * 0.15,
+                                                    duration: 0.4
+                                                }}
+                                                className="mb-1.5 whitespace-nowrap"
                                                 style={{ paddingLeft: `${line.indent * 1.5}rem` }}
                                             >
                                                 {line.content}

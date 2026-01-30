@@ -78,21 +78,28 @@ export default function Footer() {
                             Navigation
                         </h4>
                         <ul className="space-y-2">
-                            {navLinks.map((link) => (
-                                <li key={link.name}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-[var(--muted)] hover:text-[var(--accent)] 
-                                                   transition-colors text-sm inline-flex items-center gap-1
-                                                   group"
-                                    >
-                                        <span className="opacity-0 group-hover:opacity-100 transition-opacity">
-                                            →
-                                        </span>
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            ))}
+                            {navLinks.map((link) => {
+                                const sectionId = link.href.split("#")[1];
+                                return (
+                                    <li key={link.name}>
+                                        <Link
+                                            href={link.href}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+                                            }}
+                                            className="text-[var(--muted)] hover:text-[var(--accent)] 
+                                                       transition-colors text-sm inline-flex items-center gap-1
+                                                       group"
+                                        >
+                                            <span className="opacity-0 group-hover:opacity-100 transition-opacity">
+                                                →
+                                            </span>
+                                            {link.name}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </div>
 

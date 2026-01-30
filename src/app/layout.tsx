@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import InitialLoader from "@/components/InitialLoader";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -27,7 +26,6 @@ export default function RootLayout({
       <body className={`${inter.variable} antialiased`}>
         {/* Noise overlay for texture */}
         <div className="noise-overlay" />
-        <InitialLoader />
         <Navbar />
         {children}
         <Footer />

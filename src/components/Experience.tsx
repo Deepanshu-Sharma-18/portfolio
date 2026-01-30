@@ -89,7 +89,7 @@ export default function Experience() {
                 <div className="relative">
                     {/* Timeline line with gradient */}
                     <motion.div
-                        className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px transform md:-translate-x-1/2"
+                        className="absolute left-[7px] md:left-1/2 top-0 bottom-0 w-px md:-translate-x-1/2"
                         style={{
                             background: "linear-gradient(to bottom, var(--accent), var(--accent-secondary), transparent)"
                         }}
@@ -112,7 +112,7 @@ export default function Experience() {
                                 initial={{ scale: 0 }}
                                 animate={isInView ? { scale: 1 } : {}}
                                 transition={{ delay: 0.3 + index * 0.2, type: "spring" }}
-                                className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full transform md:-translate-x-1/2 -translate-y-1 z-10"
+                                className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full md:-translate-x-1/2 top-8 md:top-0 z-10"
                                 style={{
                                     background: `linear-gradient(135deg, var(--accent), var(--accent-secondary))`,
                                     boxShadow: "0 0 20px var(--accent), 0 0 40px var(--accent-secondary)"
