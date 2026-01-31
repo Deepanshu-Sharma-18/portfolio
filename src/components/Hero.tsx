@@ -20,7 +20,7 @@ export default function Hero() {
     });
 
     const y = useTransform(scrollYProgress, [0.3, 1], [0, 150]);
-    const opacity = useTransform(scrollYProgress, [0.3, 0.9], [1, 0]);
+    const opacity = useTransform(scrollYProgress, [0.7, 1], [1, 0]);
     const scale = useTransform(scrollYProgress, [0.3, 0.9], [1, 0.95]);
 
     // Mouse tracking for 3D effect
@@ -45,6 +45,7 @@ export default function Hero() {
     return (
         <section
             ref={ref}
+            id="hero"
             className="min-h-screen flex flex-col justify-start pt-[15vh] relative overflow-hidden"
             onMouseMove={handleMouseMove}
         >

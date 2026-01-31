@@ -5,11 +5,14 @@ import { motion, AnimatePresence, useMotionValue, useSpring, LayoutGroup } from 
 import Link from "next/link";
 
 const navItems = [
+    { name: "Home", href: "/#hero" },
     { name: "About", href: "/#about" },
     { name: "Projects", href: "/#projects" },
     { name: "Experience", href: "/#experience" },
     { name: "Contact", href: "/#contact" },
 ];
+
+const RESUME_URL = "/resume.pdf";
 
 export default function Navbar() {
     const [activeSection, setActiveSection] = useState("");
@@ -37,8 +40,16 @@ export default function Navbar() {
                     wasInHero = currentlyInHero;
                     setIsInHero(currentlyInHero);
 
-                    const sections = navItems.map(item => item.href.split("#")[1]);
-                    for (const section of sections.reverse()) {
+                    const sections = navItems.map(item => item.href.split("#")[1]).filter(Boolean);
+
+                    // Special case for hero/top of page
+                    if (scrollY < 100) {
+                        setActiveSection("hero");
+                        ticking = false;
+                        return;
+                    }
+
+                    for (const section of [...sections].reverse()) {
                         const element = document.getElementById(section);
                         if (element) {
                             const rect = element.getBoundingClientRect();
@@ -190,12 +201,24 @@ export default function Navbar() {
                         )}
                     </AnimatePresence>
 
-                    {/* CTA Button */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.5 }}
-                    >
+                    {/* CTA Buttons */}
+                    <div className="flex items-center gap-4">
+                        <Link
+                            href={RESUME_URL}
+                            target="_blank"
+                            className="hidden md:block"
+                        >
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="px-5 py-2 rounded-full border border-[var(--accent)]/30 
+                                           text-[var(--accent)] text-sm font-medium hover:bg-[var(--accent)]/10 
+                                           transition-colors"
+                            >
+                                Resume
+                            </motion.button>
+                        </Link>
+
                         <Link
                             href="/#contact"
                             onClick={(e) => {
@@ -234,7 +257,7 @@ export default function Navbar() {
                                 </span>
                             </motion.button>
                         </Link>
-                    </motion.div>
+                    </div>
                 </div>
             </motion.header>
 
@@ -497,7 +520,7 @@ function ExpandedMenu({ activeSection, onClose }: ExpandedMenuProps) {
             </motion.p>
 
             {/* Navigation items - no icons, clean design */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1.5 overflow-y-auto max-h-[180px] pr-2 custom-scrollbar">
                 {navItems.map((item, index) => (
                     <motion.div
                         key={item.name}
@@ -516,41 +539,59 @@ function ExpandedMenu({ activeSection, onClose }: ExpandedMenuProps) {
                             }}
                         >
                             <motion.div
-                                whileHover={{ x: 8, backgroundColor: "rgba(0,255,255,0.1)" }}
+                                whileHover={{ x: 8, backgroundColor: "rgba(0,255,255,0.08)" }}
                                 className={`
-                                    flex items-center gap-3 px-4 py-3 rounded-xl
-                                    transition-colors group
-                                    ${activeSection === item.href.split("#")[1]
+                                        flex items-center gap-3 px-3 py-2.5 rounded-xl
+                                        transition-colors group
+                                        ${activeSection === item.href.split("#")[1]
                                         ? "bg-[var(--accent)]/10"
                                         : ""
                                     }
-                                `}
+                                    `}
                             >
                                 {/* Active indicator bar */}
                                 <motion.div
-                                    className={`w-0.5 h-4 rounded-full transition-colors ${activeSection === item.href.split("#")[1]
+                                    className={`w-0.5 h-3.5 rounded-full transition-colors ${activeSection === item.href.split("#")[1]
                                         ? "bg-[var(--accent)]"
-                                        : "bg-white/20 group-hover:bg-[var(--accent)]"
+                                        : "bg-white/10 group-hover:bg-[var(--accent)]"
                                         }`}
                                 />
-                                <span className={`font-medium ${activeSection === item.href.split("#")[1]
+                                <span className={`text-sm font-medium ${activeSection === item.href.split("#")[1]
                                     ? "text-[var(--accent)]"
-                                    : "text-white/70 group-hover:text-white"
+                                    : "text-white/60 group-hover:text-white"
                                     }`}>
                                     {item.name}
                                 </span>
-                                <motion.span
-                                    className="ml-auto text-[var(--accent)] opacity-0 group-hover:opacity-100"
-                                    initial={{ x: -10 }}
-                                    whileHover={{ x: 0 }}
-                                >
-                                    →
-                                </motion.span>
                             </motion.div>
                         </Link>
                     </motion.div>
                 ))}
             </div>
+
+            {/* Resume link in Menu */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="mt-4 pt-4 border-t border-white/5"
+            >
+                <Link
+                    href={RESUME_URL}
+                    target="_blank"
+                    className="flex items-center gap-3 px-3 py-3 rounded-xl bg-[var(--accent)]/5 hover:bg-[var(--accent)]/10 transition-colors group"
+                >
+                    <div className="w-8 h-8 rounded-full bg-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)]">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+                            <path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <div className="flex flex-col">
+                        <span className="text-sm font-bold text-white group-hover:text-[var(--accent)] transition-colors">Download Resume</span>
+                        <span className="text-[10px] text-white/40">PDF Format</span>
+                    </div>
+                    <span className="ml-auto text-[var(--accent)] group-hover:translate-x-1 transition-transform">→</span>
+                </Link>
+            </motion.div>
         </motion.div>
     );
 }

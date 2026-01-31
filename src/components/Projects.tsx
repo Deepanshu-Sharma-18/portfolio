@@ -7,7 +7,7 @@ import { projects } from "@/data/projects";
 
 export default function Projects() {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
     const [hoveredId, setHoveredId] = useState<string | null>(null);
 
     return (
