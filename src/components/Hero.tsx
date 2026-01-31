@@ -179,13 +179,19 @@ export default function Hero() {
                         </h1>
 
                         {/* Animated role with morphing text */}
-                        <div className="h-14 md:h-16 overflow-hidden relative flex items-center">
-                            <span className="text-[var(--muted)] text-xl mr-2">I&apos;m a</span>
-                            <MorphingText
-                                words={roles}
-                                className="text-[clamp(1.25rem,3vw,2rem)] font-bold bg-gradient-to-r from-[var(--accent)] to-[var(--accent-secondary)] bg-clip-text text-transparent"
-                                interval={3000}
-                            />
+                        <div className="min-h-[4rem] relative flex items-center flex-wrap">
+                            <span className="text-[var(--muted)] text-xl mr-2 whitespace-nowrap">I&apos;m a</span>
+                            {mounted ? (
+                                <MorphingText
+                                    words={roles}
+                                    className="text-[clamp(1.25rem,3vw,2.5rem)] font-bold bg-gradient-to-r from-[var(--accent)] to-[var(--accent-secondary)] bg-clip-text text-transparent leading-none py-1"
+                                    interval={3000}
+                                />
+                            ) : (
+                                <span className="text-[clamp(1.25rem,3vw,2.5rem)] font-bold text-[var(--accent)]">
+                                    Flutter Developer
+                                </span>
+                            )}
                         </div>
 
                         {/* Description with highlight */}

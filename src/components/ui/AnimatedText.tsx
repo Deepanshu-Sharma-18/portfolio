@@ -26,9 +26,10 @@ export function MorphingText({ words, className = "", interval = 3000 }: Morphin
     }, [words.length, interval]);
 
     return (
-        <span className={`relative inline-block ${className}`}>
+        <span className="relative inline-block">
             <motion.span
                 key={currentIndex}
+                className={className}
                 initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
                 animate={{
                     opacity: isAnimating ? 0 : 1,
