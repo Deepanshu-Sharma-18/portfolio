@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   title: "Deepanshu Sharma | Mobile Developer",
   description: "Flutter & Android Developer Portfolio - Building beautiful, performant mobile applications",
   keywords: ["Flutter", "Android", "Mobile Developer", "Kotlin", "Dart", "Portfolio"],
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
