@@ -67,42 +67,33 @@ export default function Hero() {
             {/* Floating orbs with parallax */}
             <FloatAnimation delay={0} duration={6}>
                 <motion.div
-                    style={{ y: useTransform(scrollYProgress, [0, 1], [0, 100]) }}
+                    style={{ y: useTransform(scrollYProgress, [0, 1], [0, 100]), willChange: "transform, opacity" }}
                     className="absolute top-[15%] left-[8%] w-2 h-2 rounded-full bg-[var(--accent)]"
                     animate={{
-                        boxShadow: [
-                            "0 0 10px var(--accent)",
-                            "0 0 30px var(--accent)",
-                            "0 0 10px var(--accent)"
-                        ]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                />
-            </FloatAnimation>
-            <FloatAnimation delay={1} duration={7}>
-                <motion.div
-                    style={{ y: useTransform(scrollYProgress, [0, 1], [0, 150]) }}
-                    className="absolute top-[25%] right-[12%] w-3 h-3 rounded-full bg-[var(--accent-secondary)]"
-                    animate={{
-                        boxShadow: [
-                            "0 0 10px var(--accent-secondary)",
-                            "0 0 40px var(--accent-secondary)",
-                            "0 0 10px var(--accent-secondary)"
-                        ]
+                        opacity: [0.5, 1, 0.5],
+                        scale: [1, 1.2, 1],
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
                 />
             </FloatAnimation>
+            <FloatAnimation delay={1} duration={7}>
+                <motion.div
+                    style={{ y: useTransform(scrollYProgress, [0, 1], [0, 150]), willChange: "transform, opacity" }}
+                    className="absolute top-[25%] right-[12%] w-3 h-3 rounded-full bg-[var(--accent-secondary)]"
+                    animate={{
+                        opacity: [0.4, 0.8, 0.4],
+                        scale: [1, 1.3, 1],
+                    }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                />
+            </FloatAnimation>
             <FloatAnimation delay={2} duration={5}>
                 <motion.div
-                    style={{ y: useTransform(scrollYProgress, [0, 1], [0, 80]) }}
+                    style={{ y: useTransform(scrollYProgress, [0, 1], [0, 80]), willChange: "transform, opacity" }}
                     className="absolute bottom-[35%] left-[18%] w-1.5 h-1.5 rounded-full bg-[var(--accent-tertiary)]"
                     animate={{
-                        boxShadow: [
-                            "0 0 8px var(--accent-tertiary)",
-                            "0 0 25px var(--accent-tertiary)",
-                            "0 0 8px var(--accent-tertiary)"
-                        ]
+                        opacity: [0.6, 1, 0.6],
+                        scale: [1, 1.1, 1],
                     }}
                     transition={{ duration: 2.5, repeat: Infinity }}
                 />
@@ -110,7 +101,7 @@ export default function Hero() {
 
             {/* Main content with parallax and 3D tilt */}
             <motion.div
-                style={{ y, opacity, scale, rotateX, rotateY }}
+                style={{ y, opacity, scale, rotateX, rotateY, willChange: "transform, opacity" }}
                 className="relative z-10 max-w-7xl mx-auto px-6 w-full perspective-1000"
             >
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -128,13 +119,13 @@ export default function Hero() {
                             className="flex items-center gap-3"
                         >
                             <motion.div
-                                className="w-12 h-px bg-gradient-to-r from-[var(--accent)] to-transparent"
+                                className="w-8 md:w-12 h-px bg-gradient-to-r from-[var(--accent)] to-transparent"
                                 initial={{ scaleX: 0 }}
                                 animate={{ scaleX: 1 }}
                                 transition={{ delay: 0.5, duration: 0.6 }}
                             />
                             <span
-                                className="text-[var(--accent)] text-lg font-medium tracking-wide"
+                                className="text-[var(--accent)] text-base md:text-lg font-medium tracking-wide"
                                 style={{ textShadow: "0 0 20px rgba(0, 255, 255, 0.3)" }}
                             >
                                 Hello, I&apos;m
@@ -180,16 +171,16 @@ export default function Hero() {
                         </h1>
 
                         {/* Animated role with morphing text */}
-                        <div className="min-h-[4rem] relative flex items-center flex-wrap">
-                            <span className="text-[var(--muted)] text-xl mr-2 whitespace-nowrap">I&apos;m a</span>
+                        <div className="min-h-[3rem] md:min-h-[4rem] relative flex items-center flex-wrap">
+                            <span className="text-[var(--muted)] text-lg md:text-xl mr-2 whitespace-nowrap">I&apos;m a</span>
                             {mounted ? (
                                 <MorphingText
                                     words={roles}
-                                    className="text-[clamp(1.25rem,3vw,2.5rem)] font-bold bg-gradient-to-r from-[var(--accent)] to-[var(--accent-secondary)] bg-clip-text text-transparent leading-none py-1"
+                                    className="text-[clamp(1.1rem,3vw,2.5rem)] font-bold bg-gradient-to-r from-[var(--accent)] to-[var(--accent-secondary)] bg-clip-text text-transparent leading-none py-1"
                                     interval={3000}
                                 />
                             ) : (
-                                <span className="text-[clamp(1.25rem,3vw,2.5rem)] font-bold text-[var(--accent)]">
+                                <span className="text-[clamp(1.1rem,3vw,2.5rem)] font-bold text-[var(--accent)]">
                                     Flutter Developer
                                 </span>
                             )}
@@ -200,7 +191,7 @@ export default function Hero() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.35, duration: 0.5, ease: "easeOut" }}
-                            className="text-[clamp(1rem,1.3vw,1.25rem)] text-[var(--muted)] 
+                            className="text-[clamp(0.95rem,1.3vw,1.25rem)] text-[var(--muted)] 
                                        max-w-[min(90vw,42rem)] leading-relaxed"
                         >
                             I craft{" "}
@@ -214,8 +205,6 @@ export default function Hero() {
                                 />
                             </span>
                             , performant mobile applications that users love.
-                            Specialized in Flutter and Android development with a passion for
-                            creating seamless user experiences.
                         </motion.p>
 
                         {/* Stats row */}

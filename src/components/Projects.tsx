@@ -144,6 +144,7 @@ function ProjectCard({ project, isHovered, onHover, onLeave }: ProjectCardProps)
                                 )
                             `
                         ),
+                        willChange: "background",
                     }}
                 />
 
@@ -172,7 +173,7 @@ function ProjectCard({ project, isHovered, onHover, onLeave }: ProjectCardProps)
 
                 {/* Content */}
                 <div
-                    className="relative p-8 md:p-10 z-20"
+                    className="relative p-6 md:p-8 lg:p-10 z-20"
                     style={{ transform: "translateZ(20px)" }}
                 >
                     {/* Icon with 3D lift */}

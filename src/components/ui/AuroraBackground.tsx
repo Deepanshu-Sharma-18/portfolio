@@ -29,17 +29,18 @@ export default function AuroraBackground({
                     top: "-20%",
                     right: "-15%",
                     opacity: baseOpacity,
+                    willChange: "transform, opacity",
                 }}
                 animate={{
-                    scale: [1, 1.2, 0.9, 1.1, 1],
-                    rotate: [0, 90, 180, 270, 360],
-                    x: [0, 50, -30, 20, 0],
-                    y: [0, -30, 20, -20, 0],
+                    scale: [1, 1.1, 0.95, 1],
+                    rotate: [0, 180, 360],
+                    x: [0, 30, -20, 0],
+                    y: [0, -20, 10, 0],
                 }}
                 transition={{
-                    duration: 25,
+                    duration: 30,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: "linear",
                 }}
             />
 
@@ -53,23 +54,24 @@ export default function AuroraBackground({
                     width: "55vmax",
                     height: "55vmax",
                     opacity: baseOpacity * 0.9,
+                    willChange: "transform, opacity",
                 }}
                 animate={{
-                    scale: [1, 0.9, 1.15, 1, 1.05],
-                    rotate: [0, -120, -240, -360],
-                    x: [0, -40, 30, -20, 0],
-                    y: [0, 40, -20, 30, 0],
+                    scale: [1, 0.95, 1.05, 1],
+                    rotate: [0, -180, -360],
+                    x: [0, -30, 20, 0],
+                    y: [0, 30, -10, 0],
                 }}
                 transition={{
-                    duration: 30,
+                    duration: 35,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: "linear",
                 }}
             />
 
             {/* Tertiary gold/amber blob */}
             <motion.div
-                className="aurora-blob"
+                className="aurora-blob hidden md:block" // Hide on mobile for performance
                 style={{
                     background: "linear-gradient(135deg, rgba(245, 197, 66, 0.4), transparent)",
                     top: "35%",
@@ -77,23 +79,24 @@ export default function AuroraBackground({
                     width: "35vmax",
                     height: "35vmax",
                     opacity: baseOpacity * 0.6,
+                    willChange: "transform, opacity",
                 }}
                 animate={{
-                    scale: [1, 1.3, 0.8, 1.1, 1],
-                    rotate: [0, 60, 120, 180, 240, 300, 360],
-                    x: [0, 30, -50, 40, 0],
-                    y: [0, -40, 30, -30, 0],
+                    scale: [1, 1.15, 0.9, 1],
+                    rotate: [0, 120, 240, 360],
+                    x: [0, 20, -30, 0],
+                    y: [0, -30, 20, 0],
                 }}
                 transition={{
-                    duration: 35,
+                    duration: 40,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: "linear",
                 }}
             />
 
             {/* Extra small accent blob */}
             <motion.div
-                className="aurora-blob"
+                className="aurora-blob hidden lg:block" // Hide on smaller screens
                 style={{
                     background: "linear-gradient(135deg, rgba(0, 255, 255, 0.3), rgba(139, 92, 246, 0.2))",
                     top: "60%",
@@ -101,18 +104,13 @@ export default function AuroraBackground({
                     width: "25vmax",
                     height: "25vmax",
                     opacity: baseOpacity * 0.5,
+                    willChange: "transform, opacity",
                 }}
                 animate={{
-                    scale: [1, 1.2, 0.9, 1],
-                    borderRadius: [
-                        "60% 40% 30% 70% / 60% 30% 70% 40%",
-                        "30% 60% 70% 40% / 50% 60% 30% 60%",
-                        "40% 60% 60% 40% / 60% 40% 60% 40%",
-                        "60% 40% 30% 70% / 60% 30% 70% 40%",
-                    ],
+                    scale: [1, 1.1, 1],
                 }}
                 transition={{
-                    duration: 20,
+                    duration: 25,
                     repeat: Infinity,
                     ease: "easeInOut",
                 }}

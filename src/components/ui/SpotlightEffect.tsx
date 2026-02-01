@@ -78,6 +78,7 @@ export default function SpotlightEffect({
                         transparent 70%
                     )`,
                     filter: "blur(40px)",
+                    willChange: "transform",
                 }}
                 animate={{
                     x: position.x - size / 2,
@@ -85,8 +86,8 @@ export default function SpotlightEffect({
                 }}
                 transition={{
                     type: "spring",
-                    damping: 30,
-                    stiffness: 200,
+                    damping: 35,
+                    stiffness: 250,
                     mass: 0.5,
                 }}
             />
@@ -102,6 +103,7 @@ export default function SpotlightEffect({
                         transparent 60%
                     )`,
                     filter: "blur(20px)",
+                    willChange: "transform",
                 }}
                 animate={{
                     x: position.x - (size * 0.6) / 2,
@@ -109,8 +111,8 @@ export default function SpotlightEffect({
                 }}
                 transition={{
                     type: "spring",
-                    damping: 25,
-                    stiffness: 250,
+                    damping: 30,
+                    stiffness: 300,
                     mass: 0.3,
                 }}
             />

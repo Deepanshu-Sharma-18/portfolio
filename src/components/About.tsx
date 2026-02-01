@@ -144,6 +144,7 @@ function ProfileCard() {
                 rotateX,
                 rotateY,
                 transformStyle: "preserve-3d",
+                willChange: "transform",
             }}
             className="relative w-full aspect-square max-w-[min(450px,90vw)] mx-auto"
         >
@@ -237,17 +238,17 @@ function SkillCard({ skill, index, isInView }: SkillCardProps) {
                 y: -5,
                 boxShadow: `0 10px 30px ${skill.color}30`
             }}
-            className="glass-glow px-4 py-3 rounded-xl flex items-center gap-3 cursor-default
+            className="glass-glow px-3 py-2 md:px-4 md:py-3 rounded-xl flex items-center gap-2 md:gap-3 cursor-default
                        transition-all duration-300 group"
         >
             <motion.span
-                className="text-2xl"
+                className="text-xl md:text-2xl"
                 whileHover={{ rotate: [0, -10, 10, 0], scale: 1.2 }}
                 transition={{ duration: 0.3 }}
             >
                 {skill.icon}
             </motion.span>
-            <span className="font-medium group-hover:text-[var(--accent)] transition-colors">
+            <span className="text-sm md:text-base font-medium group-hover:text-[var(--accent)] transition-colors">
                 {skill.name}
             </span>
         </motion.div>

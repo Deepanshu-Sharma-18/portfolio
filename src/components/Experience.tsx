@@ -120,7 +120,7 @@ export default function Experience() {
                             />
 
                             {/* Content card */}
-                            <div className={`flex-1 ml-8 md:ml-0 ${index % 2 === 0 ? "md:pr-16" : "md:pl-16"}`}>
+                            <div className={`flex-1 ml-8 md:ml-0 ${index % 2 === 0 ? "md:pr-8 lg:pr-16" : "md:pl-8 lg:pl-16"}`}>
                                 <ExperienceCard
                                     exp={exp}
                                     isExpanded={expandedId === exp.id}
