@@ -31,7 +31,9 @@ export default function RootLayout({
         {/* Noise overlay for texture */}
         <div className="noise-overlay" />
         <Navbar />
-        {children}
+        <main className="pt-20">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

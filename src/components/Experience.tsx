@@ -8,12 +8,12 @@ const experiences = [
         id: 1,
         role: "Flutter Developer Intern",
         company: "HDS Infotech",
-        duration: "Jan 2025 - May 2025",
+        duration: "Jan 2025 - Present",
         location: "Pune, India",
         description: [
-            "Developed a cross-platform e-commerce mobile application using Flutter, enhancing user experience with product search and checkout features for 50+ users",
-            "Streamlined checkout process with body measurement inputs; integrated REST APIs for backend integration",
-            "Contributed to 7-day Agile sprints using Jira, managed state with Provider, followed MVC architecture, and used Git for version control"
+            "Building a cross-platform intern product using Flutter, focusing on high-performance mobile experiences and scalable app architecture",
+            "Driving impact for internal users through efficient workflows and pixel-perfect UI; managing end-to-end development for the intern-specific solutions",
+            "Accumulated 6+ months of hands-on experience in Flutter and Android development, specializing in architectural patterns and state management"
         ],
         tech: ["Flutter", "Dart", "REST APIs", "Git", "Provider", "Jira"],
         icon: "🦋",

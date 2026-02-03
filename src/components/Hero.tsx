@@ -194,9 +194,9 @@ export default function Hero() {
                             className="text-[clamp(0.95rem,1.3vw,1.25rem)] text-[var(--muted)] 
                                        max-w-[min(90vw,42rem)] leading-relaxed"
                         >
-                            I craft{" "}
+                            I specialize in engineering{" "}
                             <span className="text-white font-medium relative">
-                                beautiful
+                                high-performance
                                 <motion.span
                                     className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-[var(--accent)] to-[var(--accent-secondary)]"
                                     initial={{ width: 0 }}
@@ -204,7 +204,9 @@ export default function Hero() {
                                     transition={{ delay: 1.2, duration: 0.5 }}
                                 />
                             </span>
-                            , performant mobile applications that users love.
+                            {" "}mobile applications with a focus on <span className="text-white">scalable architecture</span>,
+                            seamless user experiences, and robust performance. I bridge the gap between complex
+                            backend systems and intuitive mobile interfaces.
                         </motion.p>
 
                         {/* Stats row */}
@@ -215,7 +217,7 @@ export default function Hero() {
                             className="flex flex-wrap gap-8 pt-2"
                         >
                             {[
-                                { value: 2, suffix: "+", label: "Years Exp" },
+                                { value: 6, suffix: "+", label: "Months Exp" },
                                 { value: 10, suffix: "+", label: "Projects" },
                                 { value: 50, suffix: "+", label: "Users Impacted" },
                             ].map((stat, index) => (
@@ -274,44 +276,7 @@ export default function Hero() {
                                 </motion.a>
                             </MagneticButton>
 
-                            {/* Resume Button - Strategic Placement */}
-                            <MagneticButton>
-                                <motion.a
-                                    href="/resume.pdf"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="group relative px-6 py-4 rounded-full font-medium flex items-center gap-2
-                                               border border-[var(--accent)]/50 hover:border-[var(--accent)] 
-                                               hover:bg-[var(--accent)]/10 transition-all duration-300"
-                                >
-                                    {/* Subtle animated glow */}
-                                    <motion.div
-                                        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100"
-                                        style={{
-                                            background: "radial-gradient(circle, rgba(0,255,255,0.15), transparent 70%)",
-                                        }}
-                                        transition={{ duration: 0.3 }}
-                                    />
-                                    <svg
-                                        className="w-4 h-4 text-[var(--accent)] relative z-10"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                        />
-                                    </svg>
-                                    <span className="relative z-10 text-[var(--accent)] group-hover:text-white transition-colors">
-                                        Resume
-                                    </span>
-                                </motion.a>
-                            </MagneticButton>
+
                         </motion.div>
                     </motion.div>
 

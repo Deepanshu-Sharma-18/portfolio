@@ -12,7 +12,7 @@ const navItems = [
     { name: "Contact", href: "/#contact" },
 ];
 
-const RESUME_URL = "/resume.pdf";
+const RESUME_URL = "https://drive.google.com/file/d/1HYgBB7t5aN_3Dq2edmVVlOaD0iMJEGZD/view?usp=sharing";
 
 export default function Navbar() {
     const [activeSection, setActiveSection] = useState("");
@@ -78,7 +78,7 @@ export default function Navbar() {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${!isInHero ? "py-3" : "py-6"}`}
             >
-                <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+                <div className="max-w-7xl mx-auto px-6 flex items-center justify-between gap-8">
                     {/* Logo */}
                     <Link href="/">
                         <motion.div
@@ -87,7 +87,7 @@ export default function Navbar() {
                             whileTap={{ scale: 0.95 }}
                         >
                             <motion.div
-                                className="text-2xl font-black flex items-center"
+                                className="text-2xl font-black flex items-center flex-shrink-0"
                                 animate={{
                                     textShadow: !isInHero
                                         ? "0 0 30px rgba(0, 255, 255, 0.5)"
@@ -369,8 +369,8 @@ function LiquidOrb({ isExpanded, setIsExpanded, activeSection, showAttention }: 
             <motion.div
                 style={{ x, y }}
                 animate={{
-                    width: isExpanded ? 280 : 64,
-                    height: isExpanded ? 280 : 64,
+                    width: isExpanded ? 320 : 64,
+                    height: isExpanded ? 420 : 64,
                     borderRadius: isExpanded ? 28 : 32,
                 }}
                 transition={{ type: "spring", damping: 20, stiffness: 200 }}
@@ -520,7 +520,7 @@ function ExpandedMenu({ activeSection, onClose }: ExpandedMenuProps) {
             </motion.p>
 
             {/* Navigation items - no icons, clean design */}
-            <div className="flex flex-col gap-1.5 overflow-y-auto max-h-[180px] pr-2 custom-scrollbar">
+            <div className="flex flex-col gap-1.5 overflow-y-auto overflow-x-hidden max-h-[250px] pr-2 no-scrollbar">
                 {navItems.map((item, index) => (
                     <motion.div
                         key={item.name}

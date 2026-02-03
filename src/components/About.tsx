@@ -2,17 +2,40 @@
 
 import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
 import { useRef } from "react";
+import { FaJava } from "react-icons/fa";
+import {
+    SiFlutter, SiAndroid, SiJavascript, SiCplusplus,
+    SiKubernetes, SiGithub, SiFirebase, SiMysql,
+    SiMongodb, SiPrisma, SiLinux, SiTailwindcss,
+    SiHtml5, SiGit, SiAmazonwebservices, SiDart,
+    SiKotlin, SiDocker, SiJenkins, SiSolidity,
+    SiSpringboot, SiGo
+} from "react-icons/si";
 
 const skills = [
-    { name: "Flutter", icon: "🦋", color: "#02569B" },
-    { name: "Android", icon: "🤖", color: "#3DDC84" },
-    { name: "Kotlin", icon: "🔷", color: "#7F52FF" },
-    { name: "Java", icon: "☕", color: "#ED8B00" },
-    { name: "GoLang", icon: "🐹", color: "#00ADD8" },
-    { name: "Solidity", icon: "⛓️", color: "#363636" },
-    { name: "Spring Boot", icon: "🍃", color: "#6DB33F" },
-    { name: "AWS", icon: "☁️", color: "#FF9900" },
-    { name: "Docker", icon: "🐳", color: "#2496ED" },
+    { name: "Flutter", icon: SiFlutter, color: "#02569B" },
+    { name: "Android", icon: SiAndroid, color: "#3DDC84" },
+    { name: "Dart", icon: SiDart, color: "#0175C2" },
+    { name: "Kotlin", icon: SiKotlin, color: "#7F52FF" },
+    { name: "Java", icon: FaJava, color: "#007396" },
+    { name: "Go", icon: SiGo, color: "#00ADD8" },
+    { name: "Spring Boot", icon: SiSpringboot, color: "#6DB33F" },
+    { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+    { name: "C++", icon: SiCplusplus, color: "#00599C" },
+    { name: "Firebase", icon: SiFirebase, color: "#FFCA28" },
+    { name: "AWS", icon: SiAmazonwebservices, color: "#FF9900" },
+    { name: "Docker", icon: SiDocker, color: "#2496ED" },
+    { name: "Kubernetes", icon: SiKubernetes, color: "#326CE5" },
+    { name: "Jenkins", icon: SiJenkins, color: "#D24939" },
+    { name: "GitHub", icon: SiGithub, color: "#181717" },
+    { name: "Git", icon: SiGit, color: "#F05032" },
+    { name: "Solidity", icon: SiSolidity, color: "#363636" },
+    { name: "SQL", icon: SiMysql, color: "#4479A1" },
+    { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+    { name: "Prisma", icon: SiPrisma, color: "#2D3748" },
+    { name: "Linux", icon: SiLinux, color: "#FCC624" },
+    { name: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" },
+    { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
 ];
 
 export default function About() {
@@ -70,18 +93,19 @@ export default function About() {
                         className="space-y-6"
                     >
                         <p className="text-[clamp(1rem,1.1vw,1.25rem)] text-[var(--muted)] leading-relaxed">
-                            I&apos;m a passionate mobile developer with expertise in building
-                            cross-platform applications using{" "}
-                            <span className="text-[var(--accent)] font-medium">Flutter</span> and
-                            native <span className="text-[var(--accent-secondary)] font-medium">Android</span> development.
+                            I am a results-oriented <span className="text-[var(--accent)] font-medium">Mobile Engineer</span> dedicated
+                            to building cross-platform solutions with <span className="text-[var(--accent)] font-medium">Flutter</span> and
+                            native <span className="text-[var(--accent-secondary)] font-medium">Android</span>. My focus lies
+                            in delivering production-grade applications that balance technical excellence with
+                            exceptional user design.
                         </p>
 
                         <p className="text-[clamp(1rem,1.1vw,1.25rem)] text-[var(--muted)] leading-relaxed">
-                            With hands-on experience from a{" "}
-                            <span className="text-[var(--accent)] font-medium">6-month
-                                Flutter internship</span>, I&apos;ve developed a deep understanding of mobile
-                            app architecture, state management, and creating pixel-perfect UIs that
-                            delight users.
+                            Through my experience at <span className="text-[var(--accent)] font-medium">HDS Infotech</span>,
+                            I&apos;ve honed my skills in architecting scalable mobile systems, optimizing state
+                            management, and implementing high-fidelity interfaces. I&apos;m passionate about
+                            leveraging modern technologies to solve complex problems and creating digital
+                            experiences that leave a lasting impact.
                         </p>
 
                         {/* Skills grid */}
@@ -192,7 +216,7 @@ function ProfileCard() {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -right-4 -bottom-4 glass-glow px-6 py-3 rounded-xl z-10"
             >
-                <span className="text-[var(--accent)] font-bold text-[clamp(1rem,1.2vw,1.25rem)]">2+ Years</span>
+                <span className="text-[var(--accent)] font-bold text-[clamp(1rem,1.2vw,1.25rem)]">6+ Months</span>
                 <p className="text-sm text-[var(--muted)]">Experience</p>
             </motion.div>
 
@@ -202,7 +226,7 @@ function ProfileCard() {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 className="absolute -left-4 top-8 glass-glow px-4 py-2 rounded-xl z-10"
             >
-                <span className="text-[var(--accent-secondary)] font-bold">10+</span>
+                <span className="text-[var(--accent-secondary)] font-bold">5+</span>
                 <p className="text-xs text-[var(--muted)]">Projects</p>
             </motion.div>
 
@@ -242,11 +266,12 @@ function SkillCard({ skill, index, isInView }: SkillCardProps) {
                        transition-all duration-300 group"
         >
             <motion.span
-                className="text-xl md:text-2xl"
+                className="text-xl md:text-2xl transition-colors duration-300 group-hover:text-[var(--accent)]"
+                style={{ color: skill.color }}
                 whileHover={{ rotate: [0, -10, 10, 0], scale: 1.2 }}
                 transition={{ duration: 0.3 }}
             >
-                {skill.icon}
+                <skill.icon />
             </motion.span>
             <span className="text-sm md:text-base font-medium group-hover:text-[var(--accent)] transition-colors">
                 {skill.name}
