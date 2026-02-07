@@ -194,9 +194,9 @@ export default function Hero() {
                             className="text-[clamp(0.95rem,1.3vw,1.25rem)] text-[var(--muted)] 
                                        max-w-[min(90vw,42rem)] leading-relaxed"
                         >
-                            I specialize in engineering{" "}
+                            I build{" "}
                             <span className="text-white font-medium relative">
-                                high-performance
+                                fast, scalable mobile apps
                                 <motion.span
                                     className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-[var(--accent)] to-[var(--accent-secondary)]"
                                     initial={{ width: 0 }}
@@ -204,9 +204,8 @@ export default function Hero() {
                                     transition={{ delay: 1.2, duration: 0.5 }}
                                 />
                             </span>
-                            {" "}mobile applications with a focus on <span className="text-white">scalable architecture</span>,
-                            seamless user experiences, and robust performance. I bridge the gap between complex
-                            backend systems and intuitive mobile interfaces.
+                            {" "}that feel effortless to use. From robust backend architecture to polished mobile experiences, I turn complex systems into{" "}
+                            <span className="text-white">high-performance products</span>.
                         </motion.p>
 
                         {/* Stats row */}
@@ -218,7 +217,7 @@ export default function Hero() {
                         >
                             {[
                                 { value: 6, suffix: "+", label: "Months Exp" },
-                                { value: 10, suffix: "+", label: "Projects" },
+                                { value: 5, suffix: "+", label: "Projects" },
                                 { value: 50, suffix: "+", label: "Users Impacted" },
                             ].map((stat, index) => (
                                 <div key={index} className="text-center">
@@ -370,7 +369,7 @@ export default function Hero() {
                                 transition={{ delay: 1.2 }}
                                 className="absolute -top-4 -right-4 glass-glow px-4 py-2 rounded-full"
                             >
-                                <span className="text-[var(--accent)] font-bold">✨ 2+ Years</span>
+                                <span className="text-[var(--accent)] font-bold">✨ 6+ Months</span>
                             </motion.div>
                         </FloatAnimation>
 
@@ -381,7 +380,7 @@ export default function Hero() {
                                 transition={{ delay: 1.4 }}
                                 className="absolute -bottom-4 -left-4 glass-glow px-4 py-2 rounded-full"
                             >
-                                <span className="text-[var(--accent-secondary)] font-bold">🚀 10+ Projects</span>
+                                <span className="text-[var(--accent-secondary)] font-bold">🚀 5+ Projects</span>
                             </motion.div>
                         </FloatAnimation>
                     </div>

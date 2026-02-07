@@ -51,8 +51,7 @@ export const projects: Project[] = [
             gallery: ["/projects/healify-1.png", "/projects/healify-2.png"]
         },
         links: {
-            github: "https://github.com/Deepanshu-Sharma-18/Healify",
-            demo: "https://healify-demo.link"
+            github: "https://github.com/Deepanshu-Sharma-18/Healify"
         },
         year: "2024",
         role: "Full Stack Developer"
@@ -84,7 +83,7 @@ export const projects: Project[] = [
             gallery: ["/projects/tasktrackr-1.png", "/projects/tasktrackr-2.png"]
         },
         links: {
-            github: "https://github.com/Deepanshu-Sharma-18/TaskTrackr"
+            github: "https://github.com/Deepanshu-Sharma-18/task"
         },
         year: "2024",
         role: "Android & Backend Developer"
@@ -116,7 +115,7 @@ export const projects: Project[] = [
             gallery: ["/projects/banter-1.png", "/projects/banter-2.png"]
         },
         links: {
-            github: "https://github.com/Deepanshu-Sharma-18/Banter"
+            github: "https://github.com/Deepanshu-Sharma-18/TwitterClone"
         },
         year: "2024",
         role: "Android Developer"

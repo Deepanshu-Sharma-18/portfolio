@@ -503,19 +503,19 @@ body {
    SECTION SPACING
 ======================================== */
 section {
-  padding: 10vh 5vw;
+  padding: 6vh 5vw;
   position: relative;
 }
 
 @media (min-width: 768px) {
   section {
-    padding: 12vh 6vw;
+    padding: 8vh 6vw;
   }
 }
 
 @media (min-width: 1024px) {
   section {
-    padding: 15vh 8vw;
+    padding: 10vh 8vw;
   }
 }
 
